@@ -1,27 +1,16 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    {% load static %}
-    <link rel='stylesheet' href="{% static 'css/reset.css' %}">
-    <link rel='stylesheet' href="{% static 'css/base.css' %}">
-    <link rel='stylesheet' href="{% static 'css/header.css' %}">
-    <title>Pig Flix</title>
-</head>
-<body>
-    <header class="header">
-        <a href=#><img src="{% static 'images/logo.png' %}" alt="Logo"><h1>AtlânticoBBQ</h1></a>
-        <div>
-            <a href=#>Sobre</a>
-            <a href=#>Contato</a>
-        </div>
-    
-    </header>    
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Home - AtlânticoBBQ{% endblock %}
+
+{% block content %}
+    <div class="main">
+        <img src="/static/images/home.webp" alt="Foto de churrasqueira">
+        <form action="">
+            <label for="username">Usuário</label>
+            <input type="text" name="username" id="username">
+            <label for="password">Senha:</label>
+            <input type="password" name="password" id="password">
+            <input type="submit" value="Entrar">
+        </form>
+    </div>
+{% endblock %}

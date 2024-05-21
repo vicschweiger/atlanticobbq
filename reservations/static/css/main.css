@@ -1,0 +1,32 @@
+.main {
+    display: flex;
+}
+
+.main img {
+    width: 70vw;
+    height: 90vh;
+}
+
+.main form {
+    display: flex;
+    font-family: var(--montserrat);
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 8rem 8rem;
+    width: 20vw;
+}
+
+.main input {
+    padding: 0.75rem;
+    border-color: var(--cinza-claro);
+    border-radius: 5px;
+}
+
+.main input[type="submit"]{
+    font-family: var(--montserrat);
+    padding: 0.75rem;
+    background-color: var(--marrom);
+    border-radius: 5px;
+    color: var(--branco);
+    font-size: 1rem;
+}

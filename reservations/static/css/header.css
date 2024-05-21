@@ -1,6 +1,6 @@
 .header {
     display: flex;
-    padding: 0.75rem 1.5rem;
+    padding: 2rem;
     align-items: center;
     justify-content: space-between;
 }
@@ -23,4 +23,9 @@
 
 .header div {
     display: flex;
+    gap: 1rem;
+}
+
+.header div a {
+    font-family: var(--montserrat);
 }
