@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Calendário{% endblock %}
+
+{% block content %}
+    <div class="calendar">
+        <h1>Calendário</h1>
+        {% for month_data in calendars %}
+            <div>
+                <form action="submit" method="POST">
+                    <h2>{{ month_data.month_name }}</h2>
+                    <div>
+                        {% for day in month_data.days %}
+                        <input type="submit" name="event_date" value="{{ day }}">
+                        {% endfor %}
+                    </div>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
