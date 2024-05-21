@@ -5,6 +5,23 @@
     gap: 1rem;
 }
 
+.calendar div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.calendar div div {
+    display: flex;
+    gap: 1rem;
+}
+
+.calendar a {
+    text-decoration: none;
+    color: var(--preto);
+    font-family: var(--montserrat);
+}
+
 .calendar h1 {
     font-family: var(--playfair);
     font-size: 3.5rem;

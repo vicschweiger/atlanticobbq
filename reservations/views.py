@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import calendar
 from datetime import datetime, timedelta
@@ -7,6 +8,22 @@ from datetime import datetime, timedelta
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
+
+def submit_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        message = "Usuário ou senha incorretos."
+        
+        if user is not None:
+            login(request, user)
+            return redirect('/calendar') 
+        else:
+            messages.error(request, 'Usuário ou senha incorretos.')
+            return redirect('/')
+        
+    return redirect('/')
 
 
 def generate_calendar():
@@ -28,6 +45,7 @@ def generate_calendar():
     
     return calendars
 
+@login_required(login_url='/')
 def calendar_view(request):
     calendars = generate_calendar()
     context = {

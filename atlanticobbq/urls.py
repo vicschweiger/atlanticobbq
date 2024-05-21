@@ -22,7 +22,8 @@ from reservations import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('submit/', views.submit_login, name='submit_login'),
     path('calendar/', views.calendar_view, name='calendar'),
-    path('edit_user/', views.edit_user, name='calendar'),
-    path('edit_reservations/', views.edit_reservations, name='calendar'),
+    path('edit_user/', views.edit_user, name='edit_user'),
+    path('edit_reservations/', views.edit_reservations, name='edit_reservations')
 ]

@@ -5,13 +5,20 @@
 {% block content %}
     <div class="main">
         <img src="/static/images/home.webp" alt="Foto de churrasqueira">
-        <form action="submit" method="post">
+        <form action="/submit/" method="POST">
             {% csrf_token %}
             <label for="username">Usuário</label>
             <input type="text" name="username" id="username">
             <label for="password">Senha:</label>
             <input type="password" name="password" id="password">
             <input type="submit" value="Entrar">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </form>
     </div>
 {% endblock %}

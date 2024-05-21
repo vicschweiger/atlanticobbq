@@ -3,19 +3,23 @@
 {% block title %}Home - Calendário{% endblock %}
 
 {% block content %}
-    <div class="calendar">
-        <h1>Calendário</h1>
-        {% for month_data in calendars %}
+    <section class="calendar">
+        <div>
+            <h1>Calendário</h1>
             <div>
-                <form action="submit" method="POST">
-                    <h2>{{ month_data.month_name }}</h2>
-                    <div>
-                        {% for day in month_data.days %}
-                        <input type="submit" name="event_date" value="{{ day }}">
-                        {% endfor %}
-                    </div>
-                </form>
+                <a href="{% url 'edit_user' %}">Editar Usuário</a>
+                <a href="{% url 'edit_reservations' %}">Editar Reservas</a>
             </div>
+        </div>
+        {% for month_data in calendars %}
+            <form action="submit" method="POST">
+                <h2>{{ month_data.month_name }}</h2>
+                <div>
+                    {% for day in month_data.days %}
+                    <input type="submit" name="event_date" value="{{ day }}">
+                    {% endfor %}
+                </div>
+            </form>
         {% endfor %}
-    </div>
+    </section>
 {% endblock %}
