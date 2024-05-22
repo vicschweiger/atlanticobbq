@@ -25,5 +25,8 @@ urlpatterns = [
     path('submit/', views.submit_login, name='submit_login'),
     path('calendar/', views.calendar_view, name='calendar'),
     path('edit_user/', views.edit_user, name='edit_user'),
-    path('edit_reservations/', views.edit_reservations, name='edit_reservations')
+    path('edit_reservations/', views.edit_reservations, name='edit_reservations'),
+    path('edit_reservations/submit/', views.submit_reservations, name='submit_reservation'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),    
 ]

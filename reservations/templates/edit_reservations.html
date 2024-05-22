@@ -1,9 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %}Home - Calendário{% endblock %}
+{% block title %}Editar/Adicionar Reserva{% endblock %}
 
 {% block content %}
-    <div class="edit_reservations">
-        <h1>Editar Reservas</h1>
-    </div>
+    <section class="edit_reservations">
+        <div>
+            <div>
+                <h1>Editar/Adicionar Reserva</h1>
+                <a href="">Sair</a>
+            </div>
+            <form action="/submit/" method="POST">
+                {% csrf_token %}
+                <!-- Hidden field to store user's ID -->
+                <input type="number" name="user_id" value="{{ usuario.id }}" hidden>
+                <input type="date" name="reservation_date" id="reservation_date" value="{% if reservation %}{{ reservation.reservation_date }}{% endif %}" hidden>
+
+                <label for="event_date">Data da Reserva:</label>
+                <input type="date" name="event_date" id="event_date" value="{% if reservation %}{{ reservation.event_date }}{% endif %}">
+                <input type="submit" value="Salvar">
+            </form>
+        </div>
+        <img src="/static/images/churrasco-na-piscina.jpg" alt="Foto de churrasqueira ao lado de piscina.">
+    </section>
 {% endblock %}

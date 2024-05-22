@@ -59,3 +59,13 @@ def edit_user(request):
 
 def edit_reservations(request):
     return render(request, 'edit_reservations.html')
+
+def submit_reservations(request):
+
+    return render(request, 'edit_reservations.html')
+
+def about(request):
+    return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')

@@ -1,0 +1,38 @@
+.contact {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact h1 {
+    font-size: 3rem;
+    font-family: var(--playfair);
+    font-weight: 500;
+}
+
+.contact div {
+    display: flex;
+    flex-direction: column;
+    padding: 6rem 8rem;
+    gap: 5rem;
+}
+
+.contact div div {
+    gap: 1rem;
+    padding: 0;
+}
+
+.contact a {
+    font-family: var(--montserrat);
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--preto);
+    border: solid 1px var(--cinza-escuro);
+    border-radius: 15px;
+    padding: 1rem;
+    width: fit-content;
+}
+
+.contact img {
+    width: 50vw;
+    height: 80vh;
+}
