@@ -1,0 +1,65 @@
+.edit_user {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit_user h1 {
+    font-size: 3rem;
+    font-family: var(--playfair);
+    font-weight: 500;
+}
+
+.edit_user a{
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: var(--montserrat);
+    padding: 0.75rem;
+    border-radius: 5px;
+    border: solid 1px var(--prata);
+    color: var(--preto);
+    background-color: var(--branco);
+    width: 2rem;
+    align-self: flex-end;
+}
+
+.edit_user div {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 4rem;
+    gap: 1rem;
+}
+
+.edit_user div div {
+    padding: 0;
+}
+
+.edit_user form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.edit_user label {
+    font-family: var(--playfair);
+}
+
+.edit_user input {
+    padding: 0.75rem;
+    border-radius: 5px;
+    border-color: var(--cinza-claro);
+}
+
+.edit_user input[type="submit"] {
+    padding: 0.75rem;
+    border-radius: 5px;
+    border-color: var(--cinza-claro);
+    color: var(--branco);
+    background-color: var(--preto);
+    width: 20%;
+    align-self: center;
+
+}
+
+.edit_user img {
+    width: 50vw;
+}

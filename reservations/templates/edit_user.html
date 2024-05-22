@@ -1,9 +1,26 @@
 {% extends "base.html" %}
 
-{% block title %}Home - Calendário{% endblock %}
+{% block title %}Home - Editar Usuário{% endblock %}
 
 {% block content %}
-    <div class="edit_reservations">
-        <h1>Editar Reservas</h1>
-    </div>
+    <section class="edit_user">
+        <div>
+            <div>
+                <h1>Alterar dados de usuário</h1>
+                <a href="">Sair</a>
+            </div>
+            <form action="/submit/" method="POST">
+                {% csrf_token %}
+                <input type="text" name="user" id="user" value="{{ usuario.username }}" hidden>
+                <label for="first_name">Nome:</label>
+                <input type="text" name="first_name" id="first_name" value="{{ usuario.first_name }}">
+                <label for="last_name">Sobrenome:</label>
+                <input type="text" name="last_name" id="last_name" value="{{ usuario.last_name }}">
+                <label for="password">Senha:</label>
+                <input type="password" name="password" id="password">
+                <input type="submit" value="Alterar">
+            </form>
+        </div>
+        <img src="/static/images/churrascopiscina.avif" alt="Foto de churrasqueira ao lado de piscina.">
+    </section>
 {% endblock %}
