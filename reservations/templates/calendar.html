@@ -12,11 +12,16 @@
             </div>
         </div>
         {% for month_data in calendars %}
-            <form action="submit" method="POST">
+            <form action="/calendar/submit/" method="POST">
+                {% csrf_token %}
                 <h2>{{ month_data.month_name }}</h2>
                 <div>
+                    {% for month in month_data.month_name %}
+                    <input type="text" name="month" id="month" value="{{ month_name }}" hidden>
+                    {% endfor %}
                     {% for day in month_data.days %}
-                    <input type="submit" name="event_date" value="{{ day }}">
+                    <input type="text" name="day" id="day" value="{{ day }}" hidden>
+                    <input type="submit" value="{{ day }}">
                     {% endfor %}
                 </div>
             </form>

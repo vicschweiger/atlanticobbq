@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import calendar
 from datetime import datetime, timedelta
+from .models import Reservation
+from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
@@ -53,16 +55,38 @@ def calendar_view(request):
     }
     return render(request, 'calendar.html', context)
 
-
 def edit_user(request):
     return render(request, 'edit_user.html')
 
+@login_required(login_url='/')
 def edit_reservations(request):
-    return render(request, 'edit_reservations.html')
+    if request.method == "POST":
+        day = request.POST.get('day')
+        month = request.POST.get('month')
+        reservation_date = datetime.now().date()
+        calendars = generate_calendar()
+        
+        context = {
+            'event_day': day,
+            'event_month': month,
+            'reservation_date': reservation_date,
+            'calendars': calendars
+        }
+        return render(request, 'edit_reservations.html', context)
 
-def submit_reservations(request):
-
-    return render(request, 'edit_reservations.html')
+def submit_reservation(request):
+    if request.method == "POST":
+        user_id = request.POST.get('user_id')
+        event_date = request.POST.get('event_date')
+        
+        user = User.objects.get(id=user_id)
+        
+        reservation = Reservation(user=user, event_date=event_date)
+        reservation.save()
+        
+        return redirect('/calendar/')  
+        
+    return redirect('/edit_reservations')
 
 def about(request):
     return render(request, 'about.html')

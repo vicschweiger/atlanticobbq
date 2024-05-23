@@ -5,7 +5,7 @@
 {% block content %}
     <div class="main">
         <img src="/static/images/home.webp" alt="Foto de churrasqueira">
-        <form action="/submit/" method="POST">
+        <form action="/home/submit/" method="POST">
             {% csrf_token %}
             <label for="username">Usuário</label>
             <input type="text" name="username" id="username">

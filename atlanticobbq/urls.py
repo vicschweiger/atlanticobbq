@@ -21,12 +21,12 @@ from reservations import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
-    path('submit/', views.submit_login, name='submit_login'),
+    path('home/', views.index, name='home'),
+    path('home/submit/', views.submit_login, name='submit_login'),
     path('calendar/', views.calendar_view, name='calendar'),
+    path('calendar/submit/', views.edit_reservations, name='edit_reservations'), 
+    path('edit_reservations/submit/', views.submit_reservation, name='submit_reservation'),  
     path('edit_user/', views.edit_user, name='edit_user'),
-    path('edit_reservations/', views.edit_reservations, name='edit_reservations'),
-    path('edit_reservations/submit/', views.submit_reservations, name='submit_reservation'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),    
 ]

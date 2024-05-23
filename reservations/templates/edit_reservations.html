@@ -9,14 +9,24 @@
                 <h1>Editar/Adicionar Reserva</h1>
                 <a href="">Sair</a>
             </div>
-            <form action="/submit/" method="POST">
+            <form action="/edit_reservations/submit/" method="POST">
                 {% csrf_token %}
-                <!-- Hidden field to store user's ID -->
-                <input type="number" name="user_id" value="{{ usuario.id }}" hidden>
-                <input type="date" name="reservation_date" id="reservation_date" value="{% if reservation %}{{ reservation.reservation_date }}{% endif %}" hidden>
+                <input type="number" name="user_id" value="{{ user.id }}" hidden>
+                <input type="date" name="reservation_date" id="reservation_date" value="{% if reservation %}{{ reservation.reservation_date }}{% else %}{{ reservation_date }}{% endif %}" hidden>
 
                 <label for="event_date">Data da Reserva:</label>
-                <input type="date" name="event_date" id="event_date" value="{% if reservation %}{{ reservation.event_date }}{% endif %}">
+                <select name="event_month" id="event_month">
+                    {% for month_data in calendars %}
+                        <option value="{{ month_data.month_name }}">{{ month_data.month_name }}</option>
+                    {% endfor %}
+                </select>
+                <select name="event_day" id="event_day">
+                    {% for month_data in calendars %}
+                        {% for day in month_data.days %}
+                            <option value="{{ day }}">{{ day }}</option>
+                        {% endfor %}
+                    {% endfor %}
+                </select>
                 <input type="submit" value="Salvar">
             </form>
         </div>
