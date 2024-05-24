@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from reservations import views
+from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
@@ -27,6 +28,9 @@ urlpatterns = [
     path('calendar/submit/', views.edit_reservations, name='edit_reservations'), 
     path('edit_reservations/submit/', views.submit_reservation, name='submit_reservation'),  
     path('edit_user/', views.edit_user, name='edit_user'),
+    path('edit_user/submit/', views.submit_user, name='submit_user'),
+    path('my_reservations/', views.my_reservations, name='my_reservations'),
     path('about/', views.about, name='about'),
-    path('contact/', views.contact, name='contact'),    
+    path('contact/', views.contact, name='contact'),
+    path('logout/', views.custom_logout, name='logout'),
 ]

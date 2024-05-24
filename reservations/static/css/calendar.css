@@ -5,6 +5,18 @@
     gap: 1rem;
 }
 
+#has_reservations {
+    background-color: var(--preto);
+}
+
+.calendar p {
+    font-family: var(--montserrat);
+    font-size: 0.75rem;
+    border: solid 2px var(--prata);
+    border-radius: 5px;
+    padding: 1rem;
+}
+
 .calendar div {
     display: flex;
     justify-content: space-between;

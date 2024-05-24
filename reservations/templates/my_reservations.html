@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Minhas Reservas{% endblock %}
+
+{% block content %}
+    <section class="my_reservations">
+        <div>
+            <h1>Minhas Reservas</h1>
+            <div>
+                <a href="{% url 'edit_user' %}">Editar Usuário</a>
+                <a href="{% url 'logout' %}">Sair</a>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <th>Usuário</th>
+                <th>Nome do Usuário</th>
+                <th>Data do Evento</th>
+                <th>Criação da Reserva</th>
+            </tr>
+            {% for user_reservation in user_reservations %}
+            <tr>
+                <td>{{ user_reservation.user }}</td>
+                <td>{{ user_reservation.user.first_name }}</td> 
+                <td>{{ user_reservation.event_date }}</td>
+                <td>{{ user_reservation.reservation_date }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+{% endblock %}

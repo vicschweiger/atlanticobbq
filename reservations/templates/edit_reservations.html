@@ -3,33 +3,71 @@
 {% block title %}Editar/Adicionar Reserva{% endblock %}
 
 {% block content %}
-    <section class="edit_reservations">
+<section class="edit_reservations">
+    <div>
         <div>
-            <div>
-                <h1>Editar/Adicionar Reserva</h1>
-                <a href="">Sair</a>
-            </div>
-            <form action="/edit_reservations/submit/" method="POST">
-                {% csrf_token %}
-                <input type="number" name="user_id" value="{{ user.id }}" hidden>
-                <input type="date" name="reservation_date" id="reservation_date" value="{% if reservation %}{{ reservation.reservation_date }}{% else %}{{ reservation_date }}{% endif %}" hidden>
-
-                <label for="event_date">Data da Reserva:</label>
-                <select name="event_month" id="event_month">
-                    {% for month_data in calendars %}
-                        <option value="{{ month_data.month_name }}">{{ month_data.month_name }}</option>
-                    {% endfor %}
-                </select>
-                <select name="event_day" id="event_day">
-                    {% for month_data in calendars %}
-                        {% for day in month_data.days %}
-                            <option value="{{ day }}">{{ day }}</option>
-                        {% endfor %}
-                    {% endfor %}
-                </select>
-                <input type="submit" value="Salvar">
-            </form>
+            <h1>Editar/Adicionar Reserva</h1>
+            <a href="{% url 'logout' %}">Sair</a>
         </div>
-        <img src="/static/images/churrasco-na-piscina.jpg" alt="Foto de churrasqueira ao lado de piscina.">
-    </section>
+        <form action="/edit_reservations/submit/" method="POST">
+            {% csrf_token %}
+            <input type="number" name="user_id" value="{{ user.id }}" hidden>
+            <input type="date" name="reservation_date" id="reservation_date" value="{% if reservation %}{{ reservation.reservation_date }}{% else %}{{ reservation_date }}{% endif %}" hidden>
+
+            <label for="event_date">Data da Reserva:</label>
+            <select name="event_month" id="event_month">
+                {% for month_data in calendars %}
+                    <option value="{{ month_data.month_name }}">{{ month_data.month_name }}</option>
+                {% endfor %}
+            </select>
+            <select name="event_day" id="event_day">
+                {% for month_data in calendars %}
+                    {% if month_data.month_name == selected_month %}
+                        {% for day in month_data.days %}
+                            {% if day == selected_day %}
+                                <option value="{{ day }}" selected>{{ day }}</option>
+                            {% else %}
+                                <option value="{{ day }}">{{ day }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <input type="submit" value="Salvar">
+        </form>
+    </div>
+    <img src="/static/images/churrasco-na-piscina.jpg" alt="Foto de churrasqueira ao lado de piscina.">
+</section>
+
+<script>
+    // Dados dos dias por mês
+    const monthDays = {
+        {% for month_data in calendars %}
+            "{{ month_data.month_name }}": [{{ month_data.days|join:", " }}],
+        {% endfor %}
+    };
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const eventMonthSelect = document.getElementById("event_month");
+        const eventDaySelect = document.getElementById("event_day");
+
+        function updateDays() {
+            const selectedMonth = eventMonthSelect.value;
+            const days = monthDays[selectedMonth];
+
+            eventDaySelect.innerHTML = "";
+
+            days.forEach(day => {
+                const option = document.createElement("option");
+                option.value = day;
+                option.textContent = day;
+                eventDaySelect.appendChild(option);
+            });
+        }
+
+        updateDays();
+
+        eventMonthSelect.addEventListener("change", updateDays);
+    });
+</script>
 {% endblock %}

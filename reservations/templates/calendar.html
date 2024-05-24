@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Home - Calendário{% endblock %}
+{% block title %}Calendário{% endblock %}
 
 {% block content %}
     <section class="calendar">
@@ -8,7 +8,8 @@
             <h1>Calendário</h1>
             <div>
                 <a href="{% url 'edit_user' %}">Editar Usuário</a>
-                <a href="{% url 'edit_reservations' %}">Editar Reservas</a>
+                <a href="{% url 'my_reservations' %}">Minhas Reservas</a>
+                <a href="{% url 'logout' %}">Sair</a>
             </div>
         </div>
         {% for month_data in calendars %}
@@ -17,11 +18,15 @@
                 <h2>{{ month_data.month_name }}</h2>
                 <div>
                     {% for month in month_data.month_name %}
-                    <input type="text" name="month" id="month" value="{{ month_name }}" hidden>
+                    <input type="text" name="event_month" id="event_month" value="{{ month_name }}" hidden>
                     {% endfor %}
                     {% for day in month_data.days %}
-                    <input type="text" name="day" id="day" value="{{ day }}" hidden>
-                    <input type="submit" value="{{ day }}">
+                        {% if day|date:"d" in done_reservations %}
+                        <input type="submit" value="{{ day }}" id="has_reservations">
+                        {% else %}
+                            <input type="text" name="event_day" id="event_day" value="{{ day }}" hidden>
+                            <input type="submit" value="{{ day }}">
+                        {% endif %}
                     {% endfor %}
                 </div>
             </form>

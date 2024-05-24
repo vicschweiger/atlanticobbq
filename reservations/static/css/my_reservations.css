@@ -1,0 +1,43 @@
+.my_reservations {
+    padding: 0.5rem 10rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.my_reservations div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.my_reservations h1 {
+    font-family: var(--playfair);
+    font-size: 3.5rem;
+    font-weight: 800;
+}
+
+.my_reservations a {
+    text-decoration: none;
+    color: var(--preto);
+    font-family: var(--montserrat);
+}
+
+.my_reservations table {
+    font-family: var(--playfair);
+    border: solid 2px var(--prata);
+}
+
+.my_reservations table th {
+    border: solid 1px var(--prata);
+    font-size: 2rem;
+    font-weight: 500;
+    padding: 1rem;
+}
+
+.my_reservations table td {
+    font-size: 1.75rem;
+    padding: 1rem;
+    text-align: center;
+}

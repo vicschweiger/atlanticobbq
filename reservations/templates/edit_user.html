@@ -7,17 +7,17 @@
         <div>
             <div>
                 <h1>Alterar dados de usuário</h1>
-                <a href="">Sair</a>
+                <a href="{% url 'logout' %}">Sair</a>
             </div>
-            <form action="/submit/" method="POST">
+            <form action="/edit_user/submit/" method="POST">
                 {% csrf_token %}
-                <input type="text" name="user" id="user" value="{{ usuario.username }}" hidden>
+                <input type="text" name="user_id" id="user_id" value="{{ user.id }}" hidden>
                 <label for="first_name">Nome:</label>
-                <input type="text" name="first_name" id="first_name" value="{{ usuario.first_name }}">
+                <input type="text" name="first_name" id="first_name" value="{{ user.first_name }}">
                 <label for="last_name">Sobrenome:</label>
-                <input type="text" name="last_name" id="last_name" value="{{ usuario.last_name }}">
+                <input type="text" name="last_name" id="last_name" value="{{ user.last_name }}">
                 <label for="password">Senha:</label>
-                <input type="password" name="password" id="password" value="{{ usuario.password }}">
+                <input type="password" name="password" id="password" value="{{ user.password }}">
                 <input type="submit" value="Alterar">
             </form>
         </div>
