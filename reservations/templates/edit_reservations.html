@@ -17,18 +17,14 @@
             <label for="event_date">Data da Reserva:</label>
             <select name="event_month" id="event_month">
                 {% for month_data in calendars %}
-                    <option value="{{ month_data.month_name }}">{{ month_data.month_name }}</option>
+                    <option value="{{ month_data.month_name }}" {% if month_data.month_name == selected_month %} selected {% endif %}>{{ month_data.month_name }}</option>
                 {% endfor %}
             </select>
             <select name="event_day" id="event_day">
                 {% for month_data in calendars %}
                     {% if month_data.month_name == selected_month %}
                         {% for day in month_data.days %}
-                            {% if day == selected_day %}
-                                <option value="{{ day }}" selected>{{ day }}</option>
-                            {% else %}
-                                <option value="{{ day }}">{{ day }}</option>
-                            {% endif %}
+                            <option value="{{ day }}" {% if day == selected_day %} selected {% endif %}>{{ day }}</option>
                         {% endfor %}
                     {% endif %}
                 {% endfor %}

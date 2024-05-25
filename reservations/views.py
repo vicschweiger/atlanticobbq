@@ -25,9 +25,9 @@ def submit_login(request):
             return redirect('/calendar') 
         else:
             messages.error(request, 'Usuário ou senha incorretos.')
-            return redirect('/')
+            return redirect('/home')
         
-    return redirect('/')
+    return redirect('/home')
 
 
 def generate_calendar():
@@ -155,9 +155,16 @@ def submit_reservation(request):
         reservation = Reservation(user=user, event_date=event_date, reservation_date=reservation_date)
         reservation.save()
         
-        messages.success(request, 'Reserva feita com sucesso.')
-        return redirect('/calendar/')  
+        user_reservations = Reservation.objects.filter(user=request.user)
+        user = User.objects.get(id=request.user.id)
         
+        context = {
+            'user_reservations': user_reservations.order_by('event_date'),
+            'user': user
+        }
+        
+        return render(request, 'my_reservations.html', context)
+            
     return redirect('/edit_reservations')
 
 @login_required(login_url='/')
@@ -171,6 +178,47 @@ def my_reservations(request):
     }
     
     return render(request, 'my_reservations.html', context)
+
+@login_required(login_url='/')
+def edit_reservation(request):
+    if request.method == "POST":
+        reservation_id = request.POST.get('reservation_id')
+        reservation = Reservation.objects.get(id=reservation_id)
+        
+        context = {
+            'reservation': reservation,
+            'selected_day': reservation.event_date.day,
+            'selected_month': reservation.event_date.strftime('%B'),
+            'calendars': generate_calendar(),
+        }
+        
+        
+        return render(request, 'edit_reservations.html', context)
+    
+    else:
+        return render(request, 'calendar.html')
+
+@login_required(login_url='/')
+def delete_reservation(request):
+    if request.method == "POST":
+        reservation_id = request.POST.get('reservation_id')
+        reservation = Reservation.objects.get(id=reservation_id)
+        
+        reservation.delete()
+        
+        user_reservations = Reservation.objects.filter(user=request.user)
+        user = User.objects.get(id=request.user.id)
+        
+        context = {
+        'user_reservations': user_reservations.order_by('event_date'),
+        'user': user
+        }
+        
+        return render(request, 'my_reservations.html', context)
+    
+    else:
+        return render(request, 'my_reservations.html', context)
+    
     
 
 def about(request):

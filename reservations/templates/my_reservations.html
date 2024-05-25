@@ -7,6 +7,7 @@
         <div>
             <h1>Minhas Reservas</h1>
             <div>
+                <a href="{% url 'calendar' %}">Calendário</a>
                 <a href="{% url 'edit_user' %}">Editar Usuário</a>
                 <a href="{% url 'logout' %}">Sair</a>
             </div>
@@ -17,6 +18,7 @@
                 <th>Nome do Usuário</th>
                 <th>Data do Evento</th>
                 <th>Criação da Reserva</th>
+                <th>Ações</th>
             </tr>
             {% for user_reservation in user_reservations %}
             <tr>
@@ -24,6 +26,18 @@
                 <td>{{ user_reservation.user.first_name }}</td> 
                 <td>{{ user_reservation.event_date }}</td>
                 <td>{{ user_reservation.reservation_date }}</td>
+                <td>
+                    <form action="/my_reservations/edit/" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="reservation_id" id="reservation_id" value="{{ user_reservation.id }}" hidden>
+                        <input type="submit" value="Editar">
+                    </form>
+                    <form action="/my_reservations/delete/" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="reservation_id" id="reservation_id" value="{{ user_reservation.id }}" hidden>
+                        <input type="submit" value="Excluir">
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </table>
